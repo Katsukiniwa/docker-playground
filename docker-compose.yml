@@ -1,5 +1,8 @@
 version: "3"
 services:
+  app:
+    image: ubuntu:latest
+    tty: true
   web:
     image: alpine
     command: ping 127.0.0.1
