@@ -1,24 +1,34 @@
 version: "3"
 services:
   app:
-    image: ubuntu:latest
+    build:
+      dockerfile: ./app/Dockerfile
     tty: true
+    volumes:
+      - ./fluentd:/home/playground
+
   web:
     image: alpine
     command: ping 127.0.0.1
     networks:
       - frontend
+
   middle:
     image: alpine
     command: ping 127.0.0.1
     networks:
       - frontend
       - backend
+
   db:
     image: alpine
     command: ping 127.0.0.1
     networks:
       - backend
+
+volumes:
+  fluentd:
+
 networks:
   frontend:
     driver: bridge
